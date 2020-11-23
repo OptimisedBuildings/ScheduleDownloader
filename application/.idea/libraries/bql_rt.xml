@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bql-rt">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../../TrendControlSystems/IQVISION2.40/modules/bql-rt.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

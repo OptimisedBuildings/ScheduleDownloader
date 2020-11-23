@@ -22,7 +22,25 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a01a827e-4d1a-43d2-977c-c25854025d32" name="Default Changelist" comment="" />
+    <list default="true" id="a01a827e-4d1a-43d2-977c-c25854025d32" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/bql_rt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/bql_ux.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0.2/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0.2/fileContent/fileContent.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0.2/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0.2/taskHistory/fileSnapshots.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0.2/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.0.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0.2/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/ScheduleDownloader-rt.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/ScheduleDownloader-rt.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/build/classes/java/main/com/optimised_buildings_ltd/ScheduleDownloader/BSpecialEventImporter.class" beforeDir="false" afterPath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/build/classes/java/main/com/optimised_buildings_ltd/ScheduleDownloader/BSpecialEventImporter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/build/libs/ScheduleDownloader-rt-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/build/libs/ScheduleDownloader-rt-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/build/tmp/jar/module.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/build/tmp/jar/module.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/src/com/optimised_buildings_ltd/ScheduleDownloader/BSpecialEventImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ScheduleDownloader/ScheduleDownloader-rt/src/com/optimised_buildings_ltd/ScheduleDownloader/BSpecialEventImporter.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +50,43 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="niagara" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="niagara" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="niagara" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="niagara" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="niagara" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -44,9 +99,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../TrendControlSystems/IQVISION2.40/modules/bql-rt.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
-  <component name="RunManager" selected="Gradle.application [buildDependents]">
+  <component name="RunManager" selected="Gradle.application [slotomatic]">
     <configuration name="application [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -59,6 +120,25 @@
         <option name="taskNames">
           <list>
             <option value="buildDependents" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="application [buildNeeded]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildNeeded" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -87,10 +167,14 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.application [buildNeeded]" />
         <item itemvalue="Gradle.application [buildDependents]" />
         <item itemvalue="Gradle.application [slotomatic]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -112,5 +196,32 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="3226" y="149" key="FileChooserDialogImpl" timestamp="1606132360271">
+      <screen x="2560" y="-112" width="1920" height="1040" />
+    </state>
+    <state x="3226" y="149" key="FileChooserDialogImpl/0.0.2560.1040/2560.-112.1920.1040/4480.-112.1080.1880/-1920.-112.1920.1040@2560.-112.1920.1040" timestamp="1606132360271" />
+    <state width="1877" height="138" key="GridCell.Tab.0.bottom" timestamp="1606132159626">
+      <screen x="2560" y="-112" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="138" key="GridCell.Tab.0.bottom/0.0.2560.1040/2560.-112.1920.1040/4480.-112.1080.1880/-1920.-112.1920.1040@2560.-112.1920.1040" timestamp="1606132159626" />
+    <state width="1877" height="138" key="GridCell.Tab.0.center" timestamp="1606132159626">
+      <screen x="2560" y="-112" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="138" key="GridCell.Tab.0.center/0.0.2560.1040/2560.-112.1920.1040/4480.-112.1080.1880/-1920.-112.1920.1040@2560.-112.1920.1040" timestamp="1606132159626" />
+    <state width="1877" height="138" key="GridCell.Tab.0.left" timestamp="1606132159625">
+      <screen x="2560" y="-112" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="138" key="GridCell.Tab.0.left/0.0.2560.1040/2560.-112.1920.1040/4480.-112.1080.1880/-1920.-112.1920.1040@2560.-112.1920.1040" timestamp="1606132159625" />
+    <state width="1877" height="138" key="GridCell.Tab.0.right" timestamp="1606132159626">
+      <screen x="2560" y="-112" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="138" key="GridCell.Tab.0.right/0.0.2560.1040/2560.-112.1920.1040/4480.-112.1080.1880/-1920.-112.1920.1040@2560.-112.1920.1040" timestamp="1606132159626" />
+    <state x="3000" y="-18" key="SettingsEditor" timestamp="1606132369311">
+      <screen x="2560" y="-112" width="1920" height="1040" />
+    </state>
+    <state x="3000" y="-18" key="SettingsEditor/0.0.2560.1040/2560.-112.1920.1040/4480.-112.1080.1880/-1920.-112.1920.1040@2560.-112.1920.1040" timestamp="1606132369311" />
   </component>
 </project>
