@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module name="ScheduleDownloader-rt" bajaVersion="0" vendor="optimised_buildings_ltd" vendorVersion="1.0" description="CSV Import of Special Events and soft download of Trend Schedules" preferredSymbol="sd" nre="true" autoload="true" installable="true" buildMillis="1606140469854" buildHost="Pete-Ryzen" moduleName="ScheduleDownloader" runtimeProfile="rt">
+<module name="ScheduleDownloader-rt" bajaVersion="0" vendor="optimised_buildings_ltd" vendorVersion="1.0" description="CSV Import of Special Events and soft download of Trend Schedules" preferredSymbol="sd" nre="true" autoload="true" installable="true" buildMillis="1606326303277" buildHost="Pete-Ryzen" moduleName="ScheduleDownloader" runtimeProfile="rt">
  <dependencies>
   <dependency name="baja" vendor="Tridium" vendorVersion="4.8"/>
   <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.8"/>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.8"/>
   <dependency name="TrendN4-rt" vendor="Honeywell.Trend" vendorVersion="1.4"/>
   <dependency name="schedule-rt" vendor="Tridium" vendorVersion="4.8"/>
   <dependency name="ndriver-rt" vendor="Tridium" vendorVersion="4.8"/>
@@ -12,6 +13,7 @@
  <types>
   <type class="com.optimised_buildings_ltd.ScheduleDownloader.BScheduleDownloader" name="ScheduleDownloader"/>
   <type class="com.optimised_buildings_ltd.ScheduleDownloader.BSpecialEventImporter" name="SpecialEventImporter"/>
+  <type class="com.optimised_buildings_ltd.ScheduleDownloader.BScheduleUploader" name="ScheduleUploader"/>
  </types>
  <permissions>
   <niagara-permission-groups type="all"/>

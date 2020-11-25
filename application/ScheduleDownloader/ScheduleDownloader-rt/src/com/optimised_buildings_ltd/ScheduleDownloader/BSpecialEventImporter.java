@@ -12,6 +12,10 @@ import javax.baja.nre.annotations.NiagaraAction;
 import javax.baja.nre.annotations.NiagaraProperty;
 import javax.baja.nre.annotations.NiagaraType;
 import javax.baja.schedule.BBooleanSchedule;
+import javax.baja.schedule.BCompositeSchedule;
+import javax.baja.schedule.BDailySchedule;
+import javax.baja.schedule.BDateSchedule;
+import javax.baja.status.BStatusBoolean;
 import javax.baja.sys.*;
 import java.util.Spliterator;
 
@@ -21,9 +25,11 @@ import java.util.Spliterator;
 @NiagaraAction(name = "importCsv")
 
 public class BSpecialEventImporter extends BComponent {
+
+
 /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
-/*@ $com.optimised_buildings_ltd.ScheduleDownloader.BSpecialEventImporter(4272065376)1.0$ @*/
-/* Generated Mon Nov 23 13:02:15 GMT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+/*@ $com.optimised_buildings_ltd.ScheduleDownloader.BSpecialEventImporter(3802655261)1.0$ @*/
+/* Generated Wed Nov 25 12:03:43 GMT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
 
 ////////////////////////////////////////////////////////////////
 // Property "csv"
@@ -72,17 +78,17 @@ public class BSpecialEventImporter extends BComponent {
   public void setReport(String v) { setString(report, v, null); }
 
 ////////////////////////////////////////////////////////////////
-// Action "import"
+// Action "importCsv"
 ////////////////////////////////////////////////////////////////
   
   /**
-   * Slot for the {@code import} action.
+   * Slot for the {@code importCsv} action.
    * @see #importCsv()
    */
   public static final Action importCsv = newAction(0, null);
   
   /**
-   * Invoke the {@code import} action.
+   * Invoke the {@code importCsv} action.
    * @see #importCsv
    */
   public void importCsv() { invoke(importCsv, null, null); }
@@ -99,15 +105,16 @@ public class BSpecialEventImporter extends BComponent {
 
   String lastError;
 
-public void doImport(){
+public void doImportCsv(){
+  this.setReport("");
   String csv = this.getCsv();
   String[] lines = csv.split("\n");
   for(int i = 1; i < lines.length; i++){
     String[] data = lines[i].split(",");
-    String storeNumber = data[0];
+    String storeNumber = String.format("%03d", Integer.parseInt(data[0]));
     BTrendSystem store = this.resolveStore(storeNumber);
     if(store == null){
-      this.reportError(storeNumber,"BTrendSystem not found");
+      this.reportError(storeNumber,lastError);
       continue;
     }
     BBooleanSchedule masterSchedule = ((BBooleanSchedule)store.get("masterSchedule"));
@@ -115,25 +122,28 @@ public void doImport(){
       this.reportError(storeNumber,"BBooleanSchedule not found");
       continue;
     }
+    BCompositeSchedule hiddenSchedule = masterSchedule.getSchedule();
+    BCompositeSchedule specialEvents = (BCompositeSchedule) hiddenSchedule.get("specialEvents");
+    specialEvents.removeAll();
     try{
-      this.addEvent(masterSchedule, BDate.make("18/12/20"), this.timeFormatter(data[5], false), this.timeFormatter(data[6], true), true);
-      this.addEvent(masterSchedule, BDate.make("19/12/20"), this.timeFormatter(data[7], false), this.timeFormatter(data[8], true), true);
-      this.addEvent(masterSchedule, BDate.make("20/12/20"), this.timeFormatter(data[9], false), this.timeFormatter(data[10], true), true);
-      this.addEvent(masterSchedule, BDate.make("21/12/20"), this.timeFormatter(data[11], false), this.timeFormatter(data[12], true), true);
-      this.addEvent(masterSchedule, BDate.make("22/12/20"), this.timeFormatter(data[13], false), this.timeFormatter(data[14], true), true);
-      this.addEvent(masterSchedule, BDate.make("23/12/20"), this.timeFormatter(data[15], false), this.timeFormatter(data[16], true), true);
-      this.addEvent(masterSchedule, BDate.make("24/12/20"), this.timeFormatter(data[17], false), this.timeFormatter(data[18], true), true);
-      this.addEvent(masterSchedule, BDate.make("25/12/20"), this.timeFormatter(data[19], false), this.timeFormatter(data[19], true), false);
-      this.addEvent(masterSchedule, BDate.make("26/12/20"), this.timeFormatter(data[20], false), this.timeFormatter(data[21], true), true);
-      this.addEvent(masterSchedule, BDate.make("27/12/20"), this.timeFormatter(data[22], false), this.timeFormatter(data[23], true), true);
-      this.addEvent(masterSchedule, BDate.make("28/12/20"), this.timeFormatter(data[24], false), this.timeFormatter(data[25], true), true);
-      this.addEvent(masterSchedule, BDate.make("29/12/20"), this.timeFormatter(data[26], false), this.timeFormatter(data[27], true), true);
-      this.addEvent(masterSchedule, BDate.make("30/12/20"), this.timeFormatter(data[28], false), this.timeFormatter(data[29], true), true);
-      this.addEvent(masterSchedule, BDate.make("31/12/20"), this.timeFormatter(data[30], false), this.timeFormatter(data[31], true), true);
-      this.addEvent(masterSchedule, BDate.make("01/01/21"), this.timeFormatter(data[32], false), this.timeFormatter(data[33], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-18"), this.timeFormatter(data[5], false), this.timeFormatter(data[6], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-19"), this.timeFormatter(data[7], false), this.timeFormatter(data[8], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-20"), this.timeFormatter(data[9], false), this.timeFormatter(data[10], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-21"), this.timeFormatter(data[11], false), this.timeFormatter(data[12], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-22"), this.timeFormatter(data[13], false), this.timeFormatter(data[14], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-23"), this.timeFormatter(data[15], false), this.timeFormatter(data[16], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-24"), this.timeFormatter(data[17], false), this.timeFormatter(data[18], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-25"), this.timeFormatter(data[19], false), this.timeFormatter(data[19], true), false);
+      this.addEvent(masterSchedule, BDate.make("2020-12-26"), this.timeFormatter(data[20], false), this.timeFormatter(data[21], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-27"), this.timeFormatter(data[22], false), this.timeFormatter(data[23], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-28"), this.timeFormatter(data[24], false), this.timeFormatter(data[25], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-29"), this.timeFormatter(data[26], false), this.timeFormatter(data[27], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-30"), this.timeFormatter(data[28], false), this.timeFormatter(data[29], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-31"), this.timeFormatter(data[30], false), this.timeFormatter(data[31], true), true);
+      this.addEvent(masterSchedule, BDate.make("2021-01-01"), this.timeFormatter(data[32], false), this.timeFormatter(data[33], true), true);
+      this.reportError(storeNumber, "success");
     } catch (Exception e){
       this.reportError(storeNumber, e.getMessage());
-      continue;
     }
 
   }
@@ -141,31 +151,44 @@ public void doImport(){
 }
 
 public BTime timeFormatter(String timeString, boolean end) throws Exception {
-  if(timeString.contains("00:00") && end){
-    return BTime.make(23,59,0);
+  if(timeString.contains("Closed")){
+    return BTime.make(0,0,0);
   }
   String[] hoursAndMinutes = timeString.split(":");
   return BTime.make(Integer.parseInt(hoursAndMinutes[0]),Integer.parseInt(hoursAndMinutes[1]),0);
 }
 
 public void addEvent(BBooleanSchedule masterSchedule, BDate date, BTime startTime, BTime endTime, boolean eventType) throws Exception{
-  //resolve specialEvents folder
-  //remove events with matching date
-  //if event = true
-  //if startTime != 00:00
-  //add false event 00:00 to startTime
-  //add true event startTime to endTime
-  //if endTime != 11:59
-  //add false event endTime to 11:59
-  //if event = false
-  //add event 00:00 to 11:59
+  BCompositeSchedule hiddenSchedule = masterSchedule.getSchedule();
+  BCompositeSchedule specialEvents = (BCompositeSchedule) hiddenSchedule.get("specialEvents");
+
+  //Add event
+  String eventName = "ChristmasEvent" + date.toString().replaceAll("-","");
+  specialEvents.add(eventName, new BDailySchedule());
+  BDailySchedule event = (BDailySchedule) specialEvents.get(eventName);
+  BDateSchedule days = (BDateSchedule)event.getDays();
+  days.setDay(date.getDay());
+  days.setMonth(date.getMonth());
+  days.setYear(date.getYear());
+
+  if(eventType) {
+    if(!startTime.toString().contains("12:00 AM")) {
+      event.getDay().add(BTime.make(0,0,0), startTime, new BStatusBoolean(false));
+    }
+    event.getDay().add(startTime, endTime, new BStatusBoolean(true));
+    if(!endTime.toString().contains("12:00 AM")) {
+      event.getDay().add(endTime, BTime.make(0,0,0), new BStatusBoolean(false));
+    }
+  } else {
+    event.getDay().add(BTime.make(0,0,0), BTime.make(0,0,0), new BStatusBoolean(false));
+  }
 }
 
 
 
 public void reportError(String storeNumber, String error){
   //TODO Add to report
-
+  this.setReport(this.getReport() + storeNumber + ", " + error + "\n");
 }
 
 public BTrendSystem resolveStore(String storeNumber){

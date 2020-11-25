@@ -3,5 +3,6 @@
 <p m="b=baja" t="b:Folder">
     <p m="sd=ScheduleDownloader" t="sd:ScheduleDownloader" n="ScheduleDownloader"/>
     <p m="sd=ScheduleDownloader" t="sd:SpecialEventImporter" n="SpecialEventImporter"/>
+    <p m="sd=ScheduleDownloader" t="sd:ScheduleUploader" n="ScheduleUploader"/>
 </p>
 </bajaObjectGraph>

@@ -17,6 +17,7 @@ dependencies {
   compile "Tridium:bql-rt:4.8"
   compile "Tridium:ndriver-rt:4.8"
   compile "Tridium:driver-rt:4.8"
+  compile "Tridium:alarm-rt:4.8"
 }
 
 moduleTestJar {
