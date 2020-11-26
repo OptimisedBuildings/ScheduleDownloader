@@ -126,21 +126,21 @@ public void doImportCsv(){
     BCompositeSchedule specialEvents = (BCompositeSchedule) hiddenSchedule.get("specialEvents");
     specialEvents.removeAll();
     try{
-      this.addEvent(masterSchedule, BDate.make("2020-12-18"), this.timeFormatter(data[5], false), this.timeFormatter(data[6], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-19"), this.timeFormatter(data[7], false), this.timeFormatter(data[8], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-20"), this.timeFormatter(data[9], false), this.timeFormatter(data[10], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-21"), this.timeFormatter(data[11], false), this.timeFormatter(data[12], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-22"), this.timeFormatter(data[13], false), this.timeFormatter(data[14], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-23"), this.timeFormatter(data[15], false), this.timeFormatter(data[16], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-24"), this.timeFormatter(data[17], false), this.timeFormatter(data[18], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-25"), this.timeFormatter(data[19], false), this.timeFormatter(data[19], true), false);
-      this.addEvent(masterSchedule, BDate.make("2020-12-26"), this.timeFormatter(data[20], false), this.timeFormatter(data[21], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-27"), this.timeFormatter(data[22], false), this.timeFormatter(data[23], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-28"), this.timeFormatter(data[24], false), this.timeFormatter(data[25], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-29"), this.timeFormatter(data[26], false), this.timeFormatter(data[27], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-30"), this.timeFormatter(data[28], false), this.timeFormatter(data[29], true), true);
-      this.addEvent(masterSchedule, BDate.make("2020-12-31"), this.timeFormatter(data[30], false), this.timeFormatter(data[31], true), true);
-      this.addEvent(masterSchedule, BDate.make("2021-01-01"), this.timeFormatter(data[32], false), this.timeFormatter(data[33], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-18"), this.timeFormatter(data[6], false), this.timeFormatter(data[7], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-19"), this.timeFormatter(data[9], false), this.timeFormatter(data[10], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-20"), this.timeFormatter(data[12], false), this.timeFormatter(data[13], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-21"), this.timeFormatter(data[15], false), this.timeFormatter(data[16], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-22"), this.timeFormatter(data[18], false), this.timeFormatter(data[19], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-23"), this.timeFormatter(data[21], false), this.timeFormatter(data[22], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-24"), this.timeFormatter(data[24], false), this.timeFormatter(data[25], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-25"), this.timeFormatter(data[26], false), this.timeFormatter(data[26], true), false);
+      this.addEvent(masterSchedule, BDate.make("2020-12-26"), this.timeFormatter(data[28], false), this.timeFormatter(data[29], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-27"), this.timeFormatter(data[31], false), this.timeFormatter(data[32], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-28"), this.timeFormatter(data[34], false), this.timeFormatter(data[35], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-29"), this.timeFormatter(data[37], false), this.timeFormatter(data[38], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-30"), this.timeFormatter(data[40], false), this.timeFormatter(data[41], true), true);
+      this.addEvent(masterSchedule, BDate.make("2020-12-31"), this.timeFormatter(data[43], false), this.timeFormatter(data[44], true), true);
+      this.addEvent(masterSchedule, BDate.make("2021-01-01"), this.timeFormatter(data[46], false), this.timeFormatter(data[47], true), true);
       this.reportError(storeNumber, "success");
     } catch (Exception e){
       this.reportError(storeNumber, e.getMessage());

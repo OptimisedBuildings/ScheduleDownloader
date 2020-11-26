@@ -26,7 +26,7 @@ import javax.baja.sys.*;
 
 public class BScheduleDownloader extends BComponent {
 
-public void onSoftDownload() throws Exception{
+public void doSoftDownload() throws Exception{
   running = true;
 
   String storeBql = "station:|slot:/Drivers/TREND|bql:select * from TrendN4:TrendSystem";
@@ -45,6 +45,7 @@ public void onSoftDownload() throws Exception{
       running = false;
       return;
     }
+
 
       BTrendSystem store = (BTrendSystem) storeCursor.get();
     try {
