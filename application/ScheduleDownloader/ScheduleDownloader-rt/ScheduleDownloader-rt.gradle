@@ -1,0 +1,26 @@
+/* Module Build File */
+
+description     = "CSV Import of Special Events and soft download of Trend Schedules"
+ext {
+}
+niagaraModule {
+  moduleName = "ScheduleDownloader"
+  preferredSymbol = "sd"
+  runtimeProfile = "rt"
+}
+
+dependencies {
+  compile "Tridium:nre:4.8"
+  compile "Tridium:baja:4.8"
+  compile "Honeywell.Trend:TrendN4-rt:1.4"
+  compile "Tridium:schedule-rt:4.8"
+  compile "Tridium:bql-rt:4.8"
+  compile "Tridium:ndriver-rt:4.8"
+  compile "Tridium:driver-rt:4.8"
+  compile "Tridium:alarm-rt:4.8"
+}
+
+moduleTestJar {
+  from('srcTest') {
+  }
+}

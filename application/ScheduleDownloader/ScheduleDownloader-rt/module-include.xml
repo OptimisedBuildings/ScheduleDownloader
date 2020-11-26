@@ -1,0 +1,9 @@
+<!-- Module Include File -->
+<!-- Types -->
+<types>
+  <!-- Type Example:<type name="MyClass" class="com.acme.BMyClass"/> -->
+  <!--com.optimised_buildings_ltd.ScheduleDownloader-->
+  <type class="com.optimised_buildings_ltd.ScheduleDownloader.BScheduleDownloader" name="ScheduleDownloader"/>
+  <type class="com.optimised_buildings_ltd.ScheduleDownloader.BSpecialEventImporter" name="SpecialEventImporter"/>
+  <type class="com.optimised_buildings_ltd.ScheduleDownloader.BScheduleUploader" name="ScheduleUploader"/>
+</types>
