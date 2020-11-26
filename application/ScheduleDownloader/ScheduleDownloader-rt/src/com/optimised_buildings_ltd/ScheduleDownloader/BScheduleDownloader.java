@@ -50,14 +50,18 @@ public void doSoftDownload() throws Exception{
       BTrendSystem store = (BTrendSystem) storeCursor.get();
     try {
       this.setStatus("Running. Current Store: " + store.getDisplayName(null));
+      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Checking if store is down.");
       if (store.getStatus().toString().contains("down")) {
         String error = ((BTcpVirtualCnc2)store.getVCncConnectionManager().get("PrimarySetupVCnc")).getLastDisconnectCause();
         this.addToReport(store.getDisplayName(null), "Lan: " + error);
         continue;
       }
+      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Resolving Import.");
       BTrendScheduleImport trendImport = (BTrendScheduleImport) this.resolve(true, store);
+      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Resolving Export");
       BTrendScheduleExport trendExport = (BTrendScheduleExport) this.resolve(false, store);
       BTrendDevice controller = (BTrendDevice) trendExport.getParent().getParent();
+      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Checking if controller is down.");
       if(controller.getStatus().toString().contains("down")){
         String error = controller.getHealth().getLastFailCause();
         this.addToReport(store.getDisplayName(null), "Controller: " + error);
@@ -65,6 +69,7 @@ public void doSoftDownload() throws Exception{
       }
 
       //EXPORT
+      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Exporting.");
       trendExport.doExecute();
       long startTime = System.currentTimeMillis();
       while(true){
@@ -82,6 +87,7 @@ public void doSoftDownload() throws Exception{
       }
 
       //IMPORT
+      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Importing.");
       trendImport.doExecute();
       startTime = System.currentTimeMillis();
       while(true){
@@ -99,29 +105,35 @@ public void doSoftDownload() throws Exception{
       }
 
       //check against each other.
+      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Comparing.");
       if(this.checkScheduleMatch(controller, ((BBooleanSchedule)store.get("masterSchedule")),((BBooleanSchedule)trendImport.getParent()))){
         this.addToReport(store.getDisplayName(null), "Success");
       } else {
         this.addToReport(store.getDisplayName(null), "Schedules do not match");
       }
-
+      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Complete.");
 
     } catch (InterruptedException e){
     } catch (Exception e){
       this.addToReport(store.getDisplayName(null), e.toString());
     }
   }
+  this.setStatus("Idle");
 }
 
 public boolean checkScheduleMatch(BTrendDevice controller, BBooleanSchedule masterSchedule, BBooleanSchedule controllerSchedule){
   String versionString = controller.getConfiguration().getIdentification().getVersionString();
   if(versionString.contains("IQ2")){
     String encodedControllerSchedule = this.scheduleEncoder(((BComponent)controllerSchedule.getSchedule().get("week")));
+    System.out.println(encodedControllerSchedule);
     String encodedMasterSchedule = this.scheduleEncoder(((BComponent)masterSchedule.getSchedule().get("week")));
+    System.out.println(encodedMasterSchedule);
     return encodedControllerSchedule.equals(encodedMasterSchedule);
   } else if (versionString.contains("IQ3") || versionString.contains("IQ4")){
     String encodedControllerSchedule = this.scheduleEncoder(controllerSchedule.getSchedule());
+    System.out.println(encodedControllerSchedule);
     String encodedMasterSchedule = this.scheduleEncoder(masterSchedule.getSchedule());
+    System.out.println(encodedMasterSchedule);
     return encodedControllerSchedule.equals(encodedMasterSchedule);
   } else {
     return false;
@@ -168,7 +180,7 @@ public BComponent resolve(boolean type, BComponent store){
   } else {
     BTrendScheduleExport trendExport = null;
     schedulesFound = 0;
-    String bql = "station:|" + store.getSlotPath() + "|bql:select * from TrendN4:TrendScheduleExport where parent.displayName like '*EXPORT*'";
+    String bql = "station:|" + store.getSlotPath() + "|bql:select * from TrendN4:TrendScheduleExport where displayName like '*EXPORT*'";
     BITable result = (BITable)BOrd.make(bql).resolve().get();
     Cursor c = result.cursor();
     while(c.next()) {
@@ -187,15 +199,15 @@ boolean running;
 boolean pauseFlag;
 boolean haltFlag;
 
-public void onPause(){
+public void doPause(){
   pauseFlag = true;
 }
 
-public void onResume(){
+public void doResume(){
   pauseFlag = false;
 }
 
-public void onHalt(){
+public void doHalt(){
   if(running){
     haltFlag = true;
   }
