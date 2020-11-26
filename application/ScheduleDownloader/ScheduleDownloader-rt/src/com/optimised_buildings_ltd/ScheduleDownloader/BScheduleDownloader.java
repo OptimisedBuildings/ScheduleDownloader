@@ -15,20 +15,21 @@ import javax.baja.nre.annotations.NiagaraType;
 import javax.baja.schedule.BBooleanSchedule;
 import javax.baja.schedule.BTimeSchedule;
 import javax.baja.sys.*;
+import java.util.logging.Logger;
 
 @NiagaraType
-@NiagaraAction(name = "softDownload")
+@NiagaraAction(name = "softDownload", flags = Flags.ASYNC)
 @NiagaraProperty(name = "report", type = "BString", defaultValue = "BString.DEFAULT", facets = @Facet(name = "\"multiLine\"", value = "true"))
 @NiagaraAction(name = "pause")
 @NiagaraAction(name = "resume")
 @NiagaraAction(name = "halt")
-@NiagaraProperty(name = "status", type = "BString", defaultValue = "BString.DEFAULT", flags = Flags.READONLY)
+@NiagaraProperty(name = "status", type = "BString", defaultValue = "BString.DEFAULT", flags = Flags.READONLY, facets = @Facet(name = "\"multiLine\"", value = "true"))
 
 public class BScheduleDownloader extends BComponent {
 
 public void doSoftDownload() throws Exception{
   running = true;
-
+  this.setReport("");
   String storeBql = "station:|slot:/Drivers/TREND|bql:select * from TrendN4:TrendSystem";
   BITable storeTable = (BITable) BOrd.make(storeBql).resolve().get();
   Cursor storeCursor = storeTable.cursor();
@@ -53,23 +54,23 @@ public void doSoftDownload() throws Exception{
       this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Checking if store is down.");
       if (store.getStatus().toString().contains("down")) {
         String error = ((BTcpVirtualCnc2)store.getVCncConnectionManager().get("PrimarySetupVCnc")).getLastDisconnectCause();
-        this.addToReport(store.getDisplayName(null), "Lan: " + error);
+        this.addToReport(store.getDisplayName(null), "Store Connection: " + error);
         continue;
       }
-      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Resolving Import.");
+      this.setStatus("Running.\nCurrent Store: " + store.getDisplayName(null) + "\nResolving Import.");
       BTrendScheduleImport trendImport = (BTrendScheduleImport) this.resolve(true, store);
-      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Resolving Export");
+      this.setStatus("Running.\nCurrent Store: " + store.getDisplayName(null) + "\nResolving Export");
       BTrendScheduleExport trendExport = (BTrendScheduleExport) this.resolve(false, store);
       BTrendDevice controller = (BTrendDevice) trendExport.getParent().getParent();
-      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Checking if controller is down.");
+      this.setStatus("Running.\nCurrent Store: " + store.getDisplayName(null) + "\nChecking if controller is down.");
       if(controller.getStatus().toString().contains("down")){
         String error = controller.getHealth().getLastFailCause();
-        this.addToReport(store.getDisplayName(null), "Controller: " + error);
+        this.addToReport(store.getDisplayName(null), "Controller/Lan: " + error);
         continue;
       }
 
       //EXPORT
-      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Exporting.");
+      this.setStatus("Running.\nCurrent Store: " + store.getDisplayName(null) + "\nExporting.");
       trendExport.doExecute();
       long startTime = System.currentTimeMillis();
       while(true){
@@ -87,7 +88,7 @@ public void doSoftDownload() throws Exception{
       }
 
       //IMPORT
-      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Importing.");
+      this.setStatus("Running.\nCurrent Store: " + store.getDisplayName(null) + "\nImporting.");
       trendImport.doExecute();
       startTime = System.currentTimeMillis();
       while(true){
@@ -105,13 +106,13 @@ public void doSoftDownload() throws Exception{
       }
 
       //check against each other.
-      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Comparing.");
+      this.setStatus("Running.\nCurrent Store: " + store.getDisplayName(null) + "\nComparing.");
       if(this.checkScheduleMatch(controller, ((BBooleanSchedule)store.get("masterSchedule")),((BBooleanSchedule)trendImport.getParent()))){
         this.addToReport(store.getDisplayName(null), "Success");
       } else {
         this.addToReport(store.getDisplayName(null), "Schedules do not match");
       }
-      this.setStatus("Running. Current Store: " + store.getDisplayName(null) + " - Complete.");
+      this.setStatus("Running.\nCurrent Store: " + store.getDisplayName(null) + "\nComplete.");
 
     } catch (InterruptedException e){
     } catch (Exception e){
@@ -125,20 +126,22 @@ public boolean checkScheduleMatch(BTrendDevice controller, BBooleanSchedule mast
   String versionString = controller.getConfiguration().getIdentification().getVersionString();
   if(versionString.contains("IQ2")){
     String encodedControllerSchedule = this.scheduleEncoder(((BComponent)controllerSchedule.getSchedule().get("week")));
-    System.out.println(encodedControllerSchedule);
+    logger.fine(encodedControllerSchedule);
     String encodedMasterSchedule = this.scheduleEncoder(((BComponent)masterSchedule.getSchedule().get("week")));
-    System.out.println(encodedMasterSchedule);
+    logger.fine(encodedMasterSchedule);
     return encodedControllerSchedule.equals(encodedMasterSchedule);
   } else if (versionString.contains("IQ3") || versionString.contains("IQ4")){
     String encodedControllerSchedule = this.scheduleEncoder(controllerSchedule.getSchedule());
-    System.out.println(encodedControllerSchedule);
+    logger.fine(encodedControllerSchedule);
     String encodedMasterSchedule = this.scheduleEncoder(masterSchedule.getSchedule());
-    System.out.println(encodedMasterSchedule);
+    logger.fine(encodedMasterSchedule);
     return encodedControllerSchedule.equals(encodedMasterSchedule);
   } else {
     return false;
   }
 }
+
+Logger logger = Logger.getLogger("ob.scheduleDownloader");
 
 public String scheduleEncoder(BComponent schedule){
   String bql = "station:|" + schedule.getSlotPath() + "|bql:select * from schedule:TimeSchedule where effectiveValue.boolean = true";
@@ -215,8 +218,8 @@ public void doHalt(){
 
 
 /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
-/*@ $com.optimised_buildings_ltd.ScheduleDownloader.BScheduleDownloader(3579196511)1.0$ @*/
-/* Generated Wed Nov 25 16:01:01 GMT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+/*@ $com.optimised_buildings_ltd.ScheduleDownloader.BScheduleDownloader(1629084615)1.0$ @*/
+/* Generated Thu Nov 26 11:57:55 GMT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
 
 ////////////////////////////////////////////////////////////////
 // Property "report"
@@ -272,7 +275,7 @@ public void doHalt(){
    * Slot for the {@code softDownload} action.
    * @see #softDownload()
    */
-  public static final Action softDownload = newAction(0, null);
+  public static final Action softDownload = newAction(Flags.ASYNC, null);
   
   /**
    * Invoke the {@code softDownload} action.
