@@ -81,7 +81,11 @@ public void doSoftDownload() throws Exception{
           if(trendExport.getLastSuccess().isAfter(trendExport.getLastFailure())){
             break;
           } else {
-            this.addToReport(store.getDisplayName(null),trendExport.getFaultCause());
+            if(trendExport.getFaultCause().equals("")){
+              this.addToReport(store.getDisplayName(null), "Unknown fault with Export");
+            } else {
+              this.addToReport(store.getDisplayName(null), trendExport.getFaultCause());
+            }
             throw new InterruptedException();
           }
         }
@@ -99,7 +103,11 @@ public void doSoftDownload() throws Exception{
           if(trendImport.getLastSuccess().isAfter(trendImport.getLastFailure())){
             break;
           } else {
-            this.addToReport(store.getDisplayName(null),trendImport.getFaultCause());
+            if(trendImport.getFaultCause().equals("")) {
+              this.addToReport(store.getDisplayName(null), "Unknown fault with Import");
+            } else {
+              this.addToReport(store.getDisplayName(null), trendImport.getFaultCause());
+            }
             throw new InterruptedException();
           }
         }
@@ -218,8 +226,8 @@ public void doHalt(){
 
 
 /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
-/*@ $com.optimised_buildings_ltd.ScheduleDownloader.BScheduleDownloader(1629084615)1.0$ @*/
-/* Generated Thu Nov 26 11:57:55 GMT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+/*@ $com.optimised_buildings_ltd.ScheduleDownloader.BScheduleDownloader(1244407982)1.0$ @*/
+/* Generated Thu Nov 26 12:09:39 GMT 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
 
 ////////////////////////////////////////////////////////////////
 // Property "report"
@@ -253,7 +261,7 @@ public void doHalt(){
    * @see #getStatus
    * @see #setStatus
    */
-  public static final Property status = newProperty(Flags.READONLY, BString.DEFAULT, null);
+  public static final Property status = newProperty(Flags.READONLY, BString.DEFAULT, BFacets.make("multiLine", true));
   
   /**
    * Get the {@code status} property.
